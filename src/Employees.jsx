@@ -9,6 +9,7 @@ class Employees extends React.Component
     this.showForm = this.showForm.bind(this);
   }
   componentDidMount(){
+    console.log('componentDidMount');
     return fetch('http://localhost:3000/employees')
       .then(response => response.json())
       .then(e => this.setState({ employees: e, isLoading: false, showForm: false }));
