@@ -8,6 +8,7 @@ class Employees extends React.Component
     this.state = {isLoading: true, employees: null};
     this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
+    this.saveEmployee = this.saveEmployee.bind(this);
   }
   componentDidMount(){
     return fetch('http://localhost:3000/employees')
@@ -20,8 +21,25 @@ class Employees extends React.Component
   hideForm(){
     this.setState({showForm: false});
   }
-  saveEmployee(){
-
+  async saveEmployee(e){
+    e.preventDefault();
+    console.log("in saveEmployee");
+    // this.setState({isSaving: true});
+    // try {
+    //   const response = await fetch('localhost:3000/employees', {
+    //     method: 'POST', 
+    //     body: JSON.stringify(e.target.value),
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   });
+    //   const json = await response.json();
+    //   console.log('Success:', JSON.stringify(json));
+    // } 
+    // catch (error) {
+    //   console.error('Error:', error);
+    // }
+    // this.setState({isSaving: false});
   }
   render(){
     if(this.state.isSaving){
