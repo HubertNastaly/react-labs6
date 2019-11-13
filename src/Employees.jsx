@@ -7,9 +7,9 @@ class Employees extends React.Component
     super(props);
     this.state = {isLoading: true, employees: null};
     this.showForm = this.showForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
   }
   componentDidMount(){
-    console.log('componentDidMount');
     return fetch('http://localhost:3000/employees')
       .then(response => response.json())
       .then(e => this.setState({ employees: e, isLoading: false, showForm: false }));
@@ -17,13 +17,23 @@ class Employees extends React.Component
   showForm(){
     this.setState({showForm: true});
   }
+  hideForm(){
+    this.setState({showForm: false});
+  }
+  saveEmployee(){
+
+  }
   render(){
+    if(this.state.isSaving){
+      return(
+        <p>isSaving...</p>
+      )
+    }
     if(this.state.isLoading){
       return(
         <p>isLoading...</p>
       )
     }
-    console.log(this.state.employees);
     return(
       <div>
         <table style={{fontSize: 12, fontWeight: 'normal'}}>
@@ -51,7 +61,7 @@ class Employees extends React.Component
         </tbody>
         </table>
         <button onClick={this.showForm}>Add new employee</button>
-        {this.state.showForm ? <AddEmployeeForm/> : null}
+        {this.state.showForm ? <AddEmployeeForm saveEmployee={this.saveEmployee} hideForm={this.hideForm}/> : null}
       </div>
     )
   }

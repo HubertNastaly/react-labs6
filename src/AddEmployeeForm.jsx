@@ -19,7 +19,7 @@ export default class AddEmployeeForm extends React.Component
         <br/>
         <input type="text" name="email" placeholder="Email"></input>
         <br/>
-        <button>Cancel</button>
+        <button onClick={this.props.hideForm}>Cancel</button>
         <button type="submit">Add</button>
         </form>
     )
