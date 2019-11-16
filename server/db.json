@@ -154,11 +154,30 @@
     },
     {
       "isActive": true,
-      "age": "22",
-      "name": "Bogdan Kowalski",
-      "company": "Adidas",
-      "email": "bk@adidas.com",
-      "id": 526083859
+      "age": "23",
+      "name": "Danuta Nowak",
+      "company": "Nestel",
+      "email": "danuta.nowak@nestel.com",
+      "_id": "1153903087a",
+      "id": 526083860
+    },
+    {
+      "isActive": true,
+      "age": "44",
+      "name": "Jan Kowalski",
+      "company": "Nike",
+      "email": "jk@nike.com",
+      "_id": "1080340203a",
+      "id": 526083861
+    },
+    {
+      "isActive": true,
+      "age": "33",
+      "name": "Janina Kowalska",
+      "company": "Nike",
+      "email": "jako@nike.com",
+      "_id": "1914230171a",
+      "id": 526083862
     }
   ]
 }

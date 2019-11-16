@@ -78,7 +78,7 @@ class Employees extends React.Component
       }
       return Math.abs(hash);
     }
-    newEmployee.id = parseInt(generateId());
+    newEmployee._id = generateId().toString() + 'a';
     fetch('http://localhost:3000/employees', {
       method: 'POST', 
       headers: {
@@ -88,35 +88,32 @@ class Employees extends React.Component
       body: JSON.stringify(newEmployee)
     })
     .then(resp => {
+      this.setState({isSaving: false, isLoading: true});
       if (resp.ok) {
           return resp.json()
       } else {
           throw new Error("Connection error!")
       }
     })
-    .catch(error => console.dir("Error: ", error));
-
-    this.setState({isSaving: false, isLoading: true});
-
-    this.getEmployees();
+    .catch(error => console.dir("Error: ", error))
+    .then(() => this.getEmployees());
   }
 
   deleteEmployee(){
     const id = this.state.selectedEmployee;
+    console.log(id);
     if(!id)
     {
       return;
     }
-
+    
     this.setState({deletedEmployee: id});
-    fetch('http://localhost:3000/employees/:'+id, {
+    fetch('http://localhost:3000/employees/'+id, {
       method: 'DELETE',
       headers: {'content-type': 'application/json'},
-    });
-
-    this.setState({deletedEmployee: null});
-
-    this.getEmployees();
+    })
+    .then(() => this.setState({deletedEmployee: null}))
+    .then(() => this.getEmployees())
   }
 
   render(){
@@ -137,7 +134,7 @@ class Employees extends React.Component
           <tbody key="tbody">
             {this.state.employees.map((employee) => 
               
-              this.state.deletedEmployee ? <tr>Deleting...</tr> :
+              this.state.deletedEmployee == employee._id ? <tr>Deleting...</tr> :
 
                 <tr key={"tr"+employee._id}>
                   <th key={employee._id}>
