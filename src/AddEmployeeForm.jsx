@@ -1,5 +1,12 @@
 import React from 'react'
 
+import{
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 export default class AddEmployeeForm extends React.Component
 {
   constructor(props) {
@@ -8,6 +15,7 @@ export default class AddEmployeeForm extends React.Component
   }
   render(){
     return (
+      <div>
         <form onSubmit={event => { event.persist(); this.props.saveEmployee(event)}}>
         <label><input type="checkbox" name="isActive"></input>is active</label>
         <br/>
@@ -22,6 +30,9 @@ export default class AddEmployeeForm extends React.Component
         <button onClick={this.props.hideForm}>Cancel</button>
         <button type="submit">Add</button>
         </form>
+        <Link to="/">Back to list</Link>
+      </div>
+        
     )
   }
 }
