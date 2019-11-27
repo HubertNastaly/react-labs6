@@ -121,44 +121,20 @@
       "email": "beulahmichael@exosis.com"
     },
     {
-      "id": "5dc9bdc682e259cc7078b891",
-      "isActive": true,
-      "age": 34,
-      "name": "Marcia Pittman",
-      "company": "MANUFACT",
-      "email": "marciapittman@manufact.com"
-    },
-    {
-      "isActive": true,
+      "isActive": false,
       "age": "22",
-      "name": "Piotr Nowak",
+      "name": "Janina Kowalska",
       "company": "Microsoft",
-      "email": "pn@micro.com",
-      "id": "91-X4ht"
+      "email": "jk@microsoft.com",
+      "id": "H_q17gO"
     },
     {
-      "isActive": true,
-      "age": "22",
-      "name": "Jan Kowalski",
-      "company": "Nike",
-      "email": "jk@nike.com",
-      "id": "fZqjGek"
-    },
-    {
-      "isActive": true,
-      "age": "34",
-      "name": "Adam Małysz",
-      "company": "Teekane",
-      "email": "am@teekane.pl",
-      "id": "TWflxIC"
-    },
-    {
-      "isActive": true,
-      "age": "67",
-      "name": "Krystyna Czubówna",
-      "company": "Sawanna",
-      "email": "kc@sawanna.pl",
-      "id": "YckDjC3"
+      "isActive": false,
+      "age": "44",
+      "name": "Paweł Nowak",
+      "company": "CCC",
+      "email": "pn@ccc.pl",
+      "id": "qq--92u"
     }
   ]
 }

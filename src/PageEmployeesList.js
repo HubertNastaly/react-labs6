@@ -1,4 +1,5 @@
 import React from 'react'
+import './PageEmployeesList.css'
 
 import{
   BrowserRouter as Router,
@@ -17,17 +18,12 @@ export default class extends React.Component
       isLoading: true, 
       employees: null,
       deletedEmployee: null,
-      selectedEmployee: null
     }
     this.getEmployees = this.getEmployees.bind(this);
-    this.selectEmployee = this.selectEmployee.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
   }
   componentDidMount(){
     return this.getEmployees();
-  }
-  selectEmployee(e){
-    this.setState({selectedEmployee: e.target.value});
   }
   getEmployees(){
     return fetch('http://localhost:3004/employees')
@@ -38,8 +34,7 @@ export default class extends React.Component
         showForm: false,
         selectedEmployee: null }));
   }
-  deleteEmployee(){
-    const id = this.state.selectedEmployee;
+  deleteEmployee(id){
     console.log(id);
     if(!id)
     {
@@ -57,43 +52,41 @@ export default class extends React.Component
   render(){
     return(
       <div>
-        {this.state.isLoading ? <p>Loading...</p> :
+        {this.state.isLoading ? <h3 class="col-1 offset-6 my-4"><i class="fas fa-spinner fa-spin"></i></h3> :
           <div>
-          <table style={{fontSize: 12, fontWeight: 'normal'}}>
-          <thead>
+          <h4 class="text-dark offset-1 my-4">Employees</h4>
+          <Link class="btn btn-primary offset-1 mb-4" to="/new"><i class="fas fa-plus text-white pr-2"></i>Create new employee</Link>
+          <table class="table col-10 offset-1">
+          <thead class="bg-primary text-white">
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">is Active</th>
-                <th scope="col">Age</th>
-                <th scope="col">Name</th>
-                <th scope="col">Company</th>
-                <th scope="col">Email</th>
+                <th scope="col" class="col-3">Id</th>
+                <th scope="col" class="col-1 text-center">Active</th>
+                <th scope="col" class="col-1 text-center">Age</th>
+                <th scope="col" class="col-3">Name</th>
+                <th scope="col" class="col-2">Company</th>
+                <th scope="col" class="col-2">Email</th>
+                <th scope="col"></th>
             </tr>
           </thead>
-          <tbody key="tbody">
+          <tbody key="tbody" class="text-secondary">
             {this.state.employees.map((employee) => 
-              this.state.deletedEmployee == employee.id ? <tr>Deleting...</tr> :
+              this.state.deletedEmployee == employee.id ? <h3 col-10><i class="fas fa-spinner fa-spin"></i></h3> :
                 <tr key={"tr"+employee.id}>
-                  <th key={employee.id}>
-                    <label>
-                      <input key={"radio"+employee.id} type="radio" name="selectEmployee" value={employee.id} onInput={this.selectEmployee}></input>
+                  <th key={employee.id} class="col-3">
                       {employee.id}
-                    </label>
                   </th>
-                  <th key={employee.id + employee.isActive}>{employee.isActive ? 1 : 0}</th>
-                  <th key={employee.id + employee.age}>{employee.age}</th>
-                  <th key={employee.id + employee.name}>{employee.name}</th>
-                  <th key={employee.id + employee.company}>{employee.company}</th>
-                  <th key={employee.id + employee.email}>{employee.email}</th>
+                  <th key={employee.id + employee.isActive} class="col-1 text-center">{employee.isActive ? <i class="fas fa-circle text-primary"></i> : <i class="far fa-circle text-primary"></i>}</th>
+                  <th key={employee.id + employee.age} class="col-1 text-center">{employee.age}</th>
+                  <th key={employee.id + employee.name} class="col-2">{employee.name}</th>
+                  <th key={employee.id + employee.company} class="col-2">{employee.company}</th>
+                  <th key={employee.id + employee.email} class="col-2">{employee.email}</th>
+                  <th key={employee.id + "trash"}><button class="btn btn-link" onClick={() => {this.deleteEmployee(employee.id)}}><i class="fas fa-trash text-danger"></i></button></th>
                 </tr>
             )}
           </tbody>
           </table>
-          <button onClick={this.deleteEmployee}>Delete selected employee</button>
-          <Link to="/new">Create new employee</Link>
           </div>
         }
-        
         </div>
     )
   }

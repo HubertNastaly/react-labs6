@@ -33,7 +33,7 @@ class PageEmployee extends React.Component
     const email = form.elements['email'].value;
     const company = form.elements['company'].value;
     const age = form.elements['age'].value;
-    const isActive = form.elements['isActive'].value == "on" ? true : false;
+    const isActive = form.elements['isActive'].checked;
     const newEmployee = 
     {
       isActive: isActive,
@@ -71,7 +71,12 @@ class PageEmployee extends React.Component
   {
     return(
       <div>
-        {this.state.isSaving ? <p>Saving...</p> : <AddEmployeeForm saveEmployee={this.saveEmployee}/> }
+        {
+        this.state.isSaving ? 
+        <h3 class="col-1 offset-6 my-4"><i class="fas fa-spinner fa-spin"></i></h3> 
+        : 
+        <AddEmployeeForm saveEmployee={this.saveEmployee}/> 
+        }
       </div>
     )
   }
