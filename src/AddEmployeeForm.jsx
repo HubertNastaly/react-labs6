@@ -15,7 +15,7 @@ export default class AddEmployeeForm extends React.Component
   render(){
     return (
       <div>
-        <form onSubmit={event => { event.persist(); this.props.saveEmployee(event)}}>
+        <form onSubmit={event => {this.props.saveEmployee(event)}}>
         <label><input type="checkbox" name="isActive"></input>is active</label>
         <br/>
         <input type="number" name="age" placeholder="Age"></input>

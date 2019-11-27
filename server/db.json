@@ -121,14 +121,6 @@
       "email": "beulahmichael@exosis.com"
     },
     {
-      "id": "5dc9bdc669395dcbe481c1b5",
-      "isActive": false,
-      "age": 38,
-      "name": "Sellers Morrow",
-      "company": "EXTREMO",
-      "email": "sellersmorrow@extremo.com"
-    },
-    {
       "id": "5dc9bdc682e259cc7078b891",
       "isActive": true,
       "age": 34,
@@ -151,6 +143,22 @@
       "company": "Nike",
       "email": "jk@nike.com",
       "id": "fZqjGek"
+    },
+    {
+      "isActive": true,
+      "age": "34",
+      "name": "Adam Małysz",
+      "company": "Teekane",
+      "email": "am@teekane.pl",
+      "id": "TWflxIC"
+    },
+    {
+      "isActive": true,
+      "age": "67",
+      "name": "Krystyna Czubówna",
+      "company": "Sawanna",
+      "email": "kc@sawanna.pl",
+      "id": "YckDjC3"
     }
   ]
 }

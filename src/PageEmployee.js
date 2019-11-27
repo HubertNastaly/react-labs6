@@ -1,7 +1,8 @@
 import React from 'react'
 import AddEmployeeForm from './AddEmployeeForm'
+import {withRouter} from 'react-router-dom'
 
-export default class PageEmployee extends React.Component
+class PageEmployee extends React.Component
 {
   constructor(props)
   {
@@ -12,8 +13,17 @@ export default class PageEmployee extends React.Component
     }
     this.saveEmployee = this.saveEmployee.bind(this);
   }
-  saveEmployee(e){
-    console.log(e.target);
+  redirectToHome()
+  {
+    console.log()
+    const{history} = this.props;
+    if(history)
+    {
+      history.push('/');
+    }
+  }
+  saveEmployee(e)
+  {
     e.preventDefault();
     
     this.setState({isSaving: true});
@@ -24,7 +34,8 @@ export default class PageEmployee extends React.Component
     const company = form.elements['company'].value;
     const age = form.elements['age'].value;
     const isActive = form.elements['isActive'].value == "on" ? true : false;
-    const newEmployee = {
+    const newEmployee = 
+    {
       isActive: isActive,
       age: age,
       name: name,
@@ -33,7 +44,8 @@ export default class PageEmployee extends React.Component
     }
     const newEmployeeStringified = JSON.stringify(newEmployee);
 
-    fetch('http://localhost:3004/employees', {
+    fetch('http://localhost:3004/employees', 
+    {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -41,16 +53,19 @@ export default class PageEmployee extends React.Component
       },
       body: JSON.stringify(newEmployee)
     })
-    .then(resp => {
+    .then(resp => 
+      {
       this.setState({isSaving: false, isLoading: true});
-      if (resp.ok) {
+      if (resp.ok) 
+      {
           return resp.json()
-      } else {
+      } else 
+      {
           throw new Error("Connection error!")
       }
     })
     .catch(error => console.dir("Error: ", error))
-    .then(() => this.getEmployees());
+    .then(() => this.redirectToHome());
   }
   render()
   {
@@ -61,4 +76,6 @@ export default class PageEmployee extends React.Component
     )
   }
 }
+
+export default withRouter(PageEmployee);
 
